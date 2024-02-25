@@ -1,5 +1,6 @@
 setwd('C:/Users/Korben/Desktop/Cederberg-Project')
 
+
 install.packages("readxl")
 library(readxl)
 library(tidyr)
@@ -8,6 +9,20 @@ library(dplyr)
 
 #READING IN THERMOPHILUM AND STENOCARA DATA 
 T.dec <- read_excel('thermophyllm data.xlsx')
+S.den <- read_excel('stenacarra data.xlsx')
+
+str(T.dec)
+str(S.den)
+
+#making all columb names the same 
+colnames(S.den)[7]<- 'Altitude'
+
+#Adding species columb
+T.dec$Species<- "Thermophilum decemguttatum"
+S.den$Species<- "Stenocara dentata"
+
+
+
 #head(T.dec)
 # Convert multiple columns to factors
 cols_to_convert <- c("Slope", "Sex", "SexCode", "Year", "Site", "AltCode")
@@ -43,7 +58,7 @@ T.dec <- T.dec %>%
 row_with_missing_ALT <- which(is.na(T.dec$Altitude))
 ### still need altitude values for site 15
   
-S.den <- read_excel('stenacarra data.xlsx')
+
 
 
 
